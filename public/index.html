@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CutoutAI — AI Background Remover</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- Background effects -->
+<div class="bg-glow glow-one"></div>
+<div class="bg-glow glow-two"></div>
+<div class="noise"></div>
+
+
+<!-- NAVBAR -->
+<nav class="navbar">
+
+    <a href="#" class="logo">
+        <span class="logo-icon">✦</span>
+        Cutout<span>AI</span>
+    </a>
+
+    <div class="nav-links">
+        <a href="#features">Features</a>
+        <a href="#how-it-works">How it works</a>
+        <a href="#demo">Demo</a>
+    </div>
+
+    <button class="nav-btn" onclick="scrollToUpload()">
+        Get Started
+        <span>↗</span>
+    </button>
+
+</nav>
+
+
+<!-- HERO -->
+<section class="hero">
+
+    <div class="hero-content">
+
+        <div class="badge">
+            <span class="pulse-dot"></span>
+            AI POWERED IMAGE EDITOR
+        </div>
+
+        <h1>
+            Remove backgrounds.
+            <br>
+            <span class="gradient-text">Keep the magic.</span>
+        </h1>
+
+        <p class="hero-description">
+            Transform your images into clean, professional cutouts
+            with powerful AI. No Photoshop. No complicated tools.
+        </p>
+
+        <div class="hero-buttons">
+
+            <button class="primary-btn" onclick="scrollToUpload()">
+                <span>✦</span>
+                Remove Background
+                <span class="arrow">→</span>
+            </button>
+
+            <a href="#demo" class="secondary-btn">
+                See how it works
+                <span>↓</span>
+            </a>
+
+        </div>
+
+        <div class="trust-row">
+            <div class="avatars">
+                <span>👨🏻</span>
+                <span>👩🏻</span>
+                <span>👨🏽</span>
+                <span>👩🏽</span>
+            </div>
+
+            <div>
+                <strong>10,000+</strong>
+                <small>images processed</small>
+            </div>
+
+            <div class="divider"></div>
+
+            <div class="stars">
+                ★★★★★
+                <small>AI quality</small>
+            </div>
+        </div>
+
+    </div>
+
+
+    <!-- HERO VISUAL -->
+    <div class="hero-visual">
+
+        <div class="floating-card card-top">
+            <span class="mini-icon">✦</span>
+            AI Processing
+            <span class="status-dot"></span>
+        </div>
+
+        <div class="image-stage">
+
+            <div class="stage-glow"></div>
+
+            <div class="original-side">
+                <div class="fake-person">
+                    <div class="head"></div>
+                    <div class="body"></div>
+                </div>
+            </div>
+
+            <div class="cutout-side">
+                <div class="fake-person">
+                    <div class="head"></div>
+                    <div class="body"></div>
+                </div>
+            </div>
+
+            <div class="slider-line">
+                <div class="slider-button">↔</div>
+            </div>
+
+            <div class="label original-label">
+                ORIGINAL
+            </div>
+
+            <div class="label cutout-label">
+                AI CUTOUT
+            </div>
+
+        </div>
+
+        <div class="floating-card card-bottom">
+            <span>✓</span>
+            Background removed
+            <strong>99%</strong>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- UPLOAD -->
+<section class="upload-section" id="upload">
+
+    <div class="section-heading">
+
+        <div class="small-label">
+            ✦ TRY IT NOW
+        </div>
+
+        <h2>
+            Your image.
+            <span>Our AI.</span>
+        </h2>
+
+        <p>
+            Drop an image and let AI do the hard work.
+        </p>
+
+    </div>
+
+
+    <div class="upload-card" id="dropZone">
+
+        <input
+            type="file"
+            id="image"
+            name="image"
+            accept="image/png,image/jpeg,image/webp"
+            hidden
+        >
+
+        <div class="upload-icon">
+            ↑
+        </div>
+
+        <h3>Drop your image here</h3>
+
+        <p>
+            or click to browse from your computer
+        </p>
+
+        <button class="upload-btn" id="chooseBtn">
+            Choose Image
+        </button>
+
+        <div class="file-info">
+            PNG · JPG · WEBP
+            <span>•</span>
+            Max 5MB
+        </div>
+
+        <div class="upload-progress" id="uploadProgress">
+            <div class="progress-bar"></div>
+        </div>
+
+    </div>
+
+
+    <!-- PREVIEW -->
+    <div class="preview-container" id="previewContainer">
+
+        <div class="preview-header">
+            <span>Your image</span>
+
+            <button id="removeFile">
+                ×
+            </button>
+        </div>
+
+        <div class="preview-image-wrapper">
+            <img id="previewImage" alt="Preview">
+        </div>
+
+        <button class="process-btn" id="processBtn">
+            <span>✦</span>
+            Remove Background
+            <span>→</span>
+        </button>
+
+        <div class="result" id="result">
+
+            <div class="loader"></div>
+
+            <p>AI is removing the background...</p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- FEATURES -->
+<section class="features-section" id="features">
+
+    <div class="section-heading">
+
+        <div class="small-label">
+            WHY CUTOUTAI
+        </div>
+
+        <h2>
+            Built for
+            <span>creators.</span>
+        </h2>
+
+    </div>
+
+
+    <div class="features-grid">
+
+        <div class="feature-card">
+
+            <div class="feature-number">01</div>
+
+            <div class="feature-icon">⚡</div>
+
+            <h3>Lightning Fast</h3>
+
+            <p>
+                Process your images in seconds using
+                powerful AI technology.
+            </p>
+
+            <div class="card-line"></div>
+
+        </div>
+
+
+        <div class="feature-card featured">
+
+            <div class="feature-number">02</div>
+
+            <div class="feature-icon">✦</div>
+
+            <h3>Pixel Perfect</h3>
+
+            <p>
+                AI intelligently detects people, objects,
+                hair and complex edges.
+            </p>
+
+            <div class="card-line"></div>
+
+        </div>
+
+
+        <div class="feature-card">
+
+            <div class="feature-number">03</div>
+
+            <div class="feature-icon">🔒</div>
+
+            <h3>Simple & Secure</h3>
+
+            <p>
+                Upload your image, remove the background
+                and download the result.
+            </p>
+
+            <div class="card-line"></div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- DEMO -->
+<section class="demo-section" id="demo">
+
+    <div class="demo-content">
+
+        <div class="small-label">
+            AI MAGIC
+        </div>
+
+        <h2>
+            From ordinary
+            <br>
+            to <span>extraordinary.</span>
+        </h2>
+
+        <p>
+            Our AI automatically identifies the main subject
+            and separates it from the background.
+        </p>
+
+        <div class="demo-points">
+
+            <div>
+                <span>✓</span>
+                Automatic subject detection
+            </div>
+
+            <div>
+                <span>✓</span>
+                Clean edge processing
+            </div>
+
+            <div>
+                <span>✓</span>
+                Transparent PNG output
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="demo-visual">
+
+        <div class="demo-before">
+            <span>BEFORE</span>
+
+            <div class="demo-object"></div>
+        </div>
+
+        <div class="demo-after">
+            <span>AFTER</span>
+
+            <div class="demo-object"></div>
+        </div>
+
+        <div class="demo-divider"></div>
+
+    </div>
+
+</section>
+
+
+<!-- HOW IT WORKS -->
+<section class="how-section" id="how-it-works">
+
+    <div class="section-heading">
+
+        <div class="small-label">
+            SIMPLE PROCESS
+        </div>
+
+        <h2>
+            Three steps.
+            <span>That's it.</span>
+        </h2>
+
+    </div>
+
+
+    <div class="steps">
+
+        <div class="step">
+
+            <div class="step-number">01</div>
+
+            <h3>Upload</h3>
+
+            <p>
+                Select your image or simply drag and drop it.
+            </p>
+
+        </div>
+
+
+        <div class="step-line"></div>
+
+
+        <div class="step">
+
+            <div class="step-number">02</div>
+
+            <h3>AI Processing</h3>
+
+            <p>
+                Our AI detects and removes the background.
+            </p>
+
+        </div>
+
+
+        <div class="step-line"></div>
+
+
+        <div class="step">
+
+            <div class="step-number">03</div>
+
+            <h3>Download</h3>
+
+            <p>
+                Download your clean transparent PNG.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- CTA -->
+<section class="cta-section">
+
+    <div class="cta-glow"></div>
+
+    <div class="cta-content">
+
+        <div class="small-label">
+            READY TO CREATE?
+        </div>
+
+        <h2>
+            Make every image
+            <br>
+            <span>stand out.</span>
+        </h2>
+
+        <p>
+            Remove backgrounds with the power of AI.
+        </p>
+
+        <button class="primary-btn" onclick="scrollToUpload()">
+            ✦ Try CutoutAI
+            <span>→</span>
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- FOOTER -->
+<footer>
+
+    <div class="footer-logo">
+        ✦ Cutout<span>AI</span>
+    </div>
+
+    <p>
+        AI-powered background removal.
+    </p>
+
+    <div class="footer-bottom">
+        © 2026 CutoutAI. Built with AI.
+    </div>
+
+</footer>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>
